@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LOEE Class 2 — Student Handout</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5a5a5a;
+    --accent: #b44b2a;
+    --bg: #fdfcf8;
+    --card: #fff;
+    --border: #e6e1d6;
+    --code-bg: #1e1e2e;
+    --code-fg: #e4e4e7;
+    --warn-bg: #fff8e6;
+    --warn-border: #e8c878;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  header { border-bottom: 2px solid var(--border); margin-bottom: 2rem; padding-bottom: 1.25rem; }
+  header .eyebrow { color: var(--accent); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; }
+  header h1 { margin: .3rem 0 .25rem; font-size: 2rem; }
+  header p { margin: 0; color: var(--muted); }
+  h2 { margin-top: 2.5rem; font-size: 1.45rem; border-bottom: 1px solid var(--border); padding-bottom: .4rem; }
+  h3 { margin-top: 1.75rem; font-size: 1.1rem; }
+  p, li { font-size: 1rem; }
+  code { font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: .92em; background: #f2eee3; padding: .12em .35em; border-radius: 3px; }
+  pre code { background: none; padding: 0; font-size: .9rem; }
+  pre {
+    background: var(--code-bg);
+    color: var(--code-fg);
+    padding: 1rem 1.1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: .9rem;
+    line-height: 1.5;
+    position: relative;
+  }
+  .prompt-block {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    padding: 1rem 1.1rem 1.1rem;
+    margin: 1rem 0 1.25rem;
+  }
+  .prompt-block .label {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: .6rem;
+  }
+  .prompt-block .label strong { font-size: .95rem; }
+  .copy-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: .4rem .85rem;
+    border-radius: 6px;
+    font-size: .85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s;
+    font-family: inherit;
+  }
+  .copy-btn:hover { background: #943b20; }
+  .copy-btn.copied { background: #3a8a3a; }
+  .prompt-block pre {
+    background: #faf7ef;
+    color: var(--ink);
+    border: 1px solid var(--border);
+    font-size: .88rem;
+    line-height: 1.55;
+  }
+  .note, .warn {
+    border-left: 4px solid var(--accent);
+    background: var(--card);
+    padding: .75rem 1rem;
+    margin: 1rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .warn { background: var(--warn-bg); border-left-color: #c9901c; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { text-align: left; padding: .65rem .75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: #f5f0e3; font-size: .9rem; }
+  td:first-child { width: 35%; font-weight: 600; }
+  a { color: var(--accent); }
+  .toc { background: var(--card); border: 1px solid var(--border); padding: .9rem 1.2rem; border-radius: 8px; margin: 1.5rem 0; }
+  .toc strong { font-size: .9rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); }
+  .toc ol { margin: .4rem 0 0; padding-left: 1.25rem; }
+  .budget { display: inline-block; background: #f5f0e3; color: var(--muted); padding: .15rem .55rem; border-radius: 999px; font-size: .8rem; font-weight: 600; margin-left: .5rem; }
+  ul.iteration-examples li { margin-bottom: .2rem; }
+  @media print {
+    body { background: #fff; }
+    .copy-btn { display: none; }
+    .wrap { padding: 1rem; }
+    pre { background: #f5f5f5; color: #000; border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">League of Extraordinary Engineers</div>
+  <h1>Class 2: Build Three Apps</h1>
+  <p>Student Handout — keep this open during class.</p>
+</header>
+
+<p>Three apps, three patterns, one hour:</p>
+<ul>
+  <li><strong>App 1:</strong> An Etsy-style product marketplace</li>
+  <li><strong>App 2:</strong> An AI News Watchdog that summarizes new AI stories automatically</li>
+  <li><strong>App 3:</strong> A Pokemon card viewer that fetches data from a public API</li>
+</ul>
+<p>You don't need to keep up perfectly. If you fall behind on one app, keep watching and jump in on the next one. We'll circle back at the end to help anyone stuck.</p>
+
+<div class="toc">
+  <strong>On this page</strong>
+  <ol>
+    <li><a href="#setup">Setup check</a></li>
+    <li><a href="#apikey">Anthropic API key (before App 2)</a></li>
+    <li><a href="#app1">App 1 — Marketplace</a></li>
+    <li><a href="#app2">App 2 — AI News Watchdog</a></li>
+    <li><a href="#app3">App 3 — Pokemon Card Viewer</a></li>
+    <li><a href="#troubleshoot">Troubleshooting</a></li>
+    <li><a href="#afterclass">After class</a></li>
+  </ol>
+</div>
+
+<h2 id="setup">Setup check (before we start)</h2>
+<p>In your terminal, verify Claude Code is working:</p>
+<div class="prompt-block">
+  <div class="label"><strong>Verify install</strong><button class="copy-btn" data-copy="claude --version">Copy</button></div>
+  <pre><code>claude --version</code></pre>
+</div>
+<p>If that returns a version number, you're ready. If not, raise your hand — Andy will help.</p>
+
+<h3>Need Claude Code installed right now?</h3>
+<div class="prompt-block">
+  <div class="label"><strong>Mac / Linux</strong><button class="copy-btn" data-copy="curl -fsSL https://claude.ai/install.sh | bash">Copy</button></div>
+  <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+</div>
+<div class="prompt-block">
+  <div class="label"><strong>Windows PowerShell</strong><button class="copy-btn" data-copy="irm https://claude.ai/install.ps1 | iex">Copy</button></div>
+  <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+</div>
+<p>Windows needs Git for Windows first: <a href="https://git-scm.com/downloads/win" target="_blank" rel="noopener">git-scm.com/downloads/win</a></p>
+
+<h2 id="apikey">Before App 2: your Anthropic API key</h2>
+<p>App 2 uses the Anthropic API to summarize articles. You need an API key, which is different from your Claude Pro subscription.</p>
+<ol>
+  <li>Go to <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a> in your browser.</li>
+  <li>Sign in or create an account.</li>
+  <li>Go to <strong>Settings → API Keys → Create Key</strong>.</li>
+  <li>Copy the key (starts with <code>sk-ant-…</code>) and keep it somewhere handy.</li>
+</ol>
+<div class="warn">Keep your API key safe. Don't paste it into a public website or commit it to a GitHub repo. For class, pasting it into a local file on your own computer is fine.</div>
+
+<h2 id="app1">App 1: Etsy-style Marketplace <span class="budget">~15 min</span></h2>
+<p><strong>Steps:</strong></p>
+<ol>
+  <li>Open your terminal and create a new folder:</li>
+</ol>
+<div class="prompt-block">
+  <div class="label"><strong>Create folder</strong><button class="copy-btn" data-copy="mkdir loee-app1
+cd loee-app1">Copy</button></div>
+  <pre><code>mkdir loee-app1
+cd loee-app1</code></pre>
+</div>
+<ol start="2">
+  <li>Start Claude Code:</li>
+</ol>
+<div class="prompt-block">
+  <div class="label"><strong>Start Claude Code</strong><button class="copy-btn" data-copy="claude">Copy</button></div>
+  <pre><code>claude</code></pre>
+</div>
+<ol start="3">
+  <li>Paste this prompt (exactly):</li>
+</ol>
+<div class="prompt-block">
+  <div class="label"><strong>App 1 prompt</strong><button class="copy-btn" data-target="prompt-app1">Copy prompt</button></div>
+  <pre><code id="prompt-app1">Build an Etsy-style product marketplace using HTML, CSS, and JavaScript in a single index.html file. Include:
+
+- A homepage with a grid of 8 fictional product cards. Each card shows a product image placeholder (use emoji or colored div), product name, seller name, price, and a short description.
+- A category filter bar at the top with at least 4 categories (e.g., Art, Jewelry, Home, Vintage). Clicking a category filters the grid.
+- A detail view that appears when a product card is clicked, showing larger info and a "Buy Now" button (the button just shows an alert for now).
+- Warm, handcrafted styling with a creme background, serif headings, and rounded cards. Make it feel like a local artisan market.
+
+Keep everything in one file. No external dependencies.</code></pre>
+</div>
+
+<p>When Claude Code finishes, run a local server to view your app:</p>
+<div class="prompt-block">
+  <div class="label"><strong>Run local server</strong><button class="copy-btn" data-copy="npx serve .">Copy</button></div>
+  <pre><code>npx serve .</code></pre>
+</div>
+<p>Open the URL shown in the terminal (usually <code>http://localhost:3000</code>).</p>
+
+<h3>Try an iteration</h3>
+<p>Ask Claude Code to change something. Example follow-up prompts:</p>
+<ul class="iteration-examples">
+  <li>"Change the categories to books, records, plants, and coffee."</li>
+  <li>"Add a search bar at the top that filters products by name."</li>
+  <li>"Make the background a soft lavender and change the font to something modern."</li>
+</ul>
+
+<h2 id="app2">App 2: AI News Watchdog <span class="budget">~15 min</span></h2>
+<p>This app listens for new AI stories on Hacker News and summarizes them automatically using the Claude API.</p>
+<p><strong>Steps:</strong></p>
+<ol>
+  <li>Create a new folder:</li>
+</ol>
+<div class="prompt-block">
+  <div class="label"><strong>Create folder</strong><button class="copy-btn" data-copy="cd ..
+mkdir loee-app2
+cd loee-app2">Copy</button></div>
+  <pre><code>cd ..
+mkdir loee-app2
+cd loee-app2</code></pre>
+</div>
+<ol start="2">
+  <li>Start Claude Code:</li>
+</ol>
+<div class="prompt-block">
+  <div class="label"><strong>Start Claude Code</strong><button class="copy-btn" data-copy="claude">Copy</button></div>
+  <pre><code>claude</code></pre>
+</div>
+<ol start="3">
+  <li>Paste this prompt:</li>
+</ol>
+<div class="prompt-block">
+  <div class="label"><strong>App 2 prompt</strong><button class="copy-btn" data-target="prompt-app2">Copy prompt</button></div>
+  <pre><code id="prompt-app2">Build an "AI News Watchdog" as a single-file HTML web app. The app should:
+
+- On first load (or when the user clicks a "Start Watching" button), fetch the current top stories from the Hacker News API (https://hacker-news.firebaseio.com/v0/topstories.json and the individual item endpoint).
+- Filter the stories to find ones with "AI", "LLM", "Claude", "GPT", "ML", or "model" in the title (case-insensitive).
+- For each matched story found, display a card showing the title, the HN link, and a placeholder for a summary.
+- For the summary, call the Anthropic API (claude-haiku-4-5-20251001 model) with the story's title and ask Claude to write a 2-sentence summary of what the story is likely about based on the title alone.
+- After the initial load, continue polling Hacker News every 30 seconds for new matching stories. Track which story IDs you've already processed so you don't duplicate work.
+- Show a status indicator at the top: "Listening for new AI stories..." with a pulsing animation.
+- The API key should be loaded from a hardcoded variable at the top of the file (we'll paste it in).
+- Use clean, modern styling with a dark mode aesthetic.
+
+Keep everything in one index.html file. Use the fetch API, no build tools.</code></pre>
+</div>
+
+<ol start="4">
+  <li>When the file is generated, open <code>index.html</code> and find the line where the API key goes. Paste your key there (inside the quotes).</li>
+  <li>Run the app:</li>
+</ol>
+<div class="prompt-block">
+  <div class="label"><strong>Run local server</strong><button class="copy-btn" data-copy="npx serve .">Copy</button></div>
+  <pre><code>npx serve .</code></pre>
+</div>
+<p>Open the URL. The app should fetch the top AI story from Hacker News and summarize it. Leave the tab open — it'll keep watching for new stories.</p>
+
+<div class="note"><strong>Honest framing:</strong> this runs in your browser tab. When you close the tab, the watchdog stops. In a production version, you'd move this exact code to a server that runs 24/7. Same logic, different home.</div>
+
+<h2 id="app3">App 3: Pokemon Card Viewer <span class="budget">~12 min</span></h2>
+<p>This app fetches Pokemon data from a public API (no key needed) and displays it as a card.</p>
+<p><strong>Steps:</strong></p>
+<ol>
+  <li>Create a new folder:</li>
+</ol>
+<div class="prompt-block">
+  <div class="label"><strong>Create folder</strong><button class="copy-btn" data-copy="cd ..
+mkdir loee-app3
+cd loee-app3">Copy</button></div>
+  <pre><code>cd ..
+mkdir loee-app3
+cd loee-app3</code></pre>
+</div>
+<ol start="2">
+  <li>Start Claude Code:</li>
+</ol>
+<div class="prompt-block">
+  <div class="label"><strong>Start Claude Code</strong><button class="copy-btn" data-copy="claude">Copy</button></div>
+  <pre><code>claude</code></pre>
+</div>
+<ol start="3">
+  <li>Paste this prompt:</li>
+</ol>
+<div class="prompt-block">
+  <div class="label"><strong>App 3 prompt</strong><button class="copy-btn" data-target="prompt-app3">Copy prompt</button></div>
+  <pre><code id="prompt-app3">Build a Pokemon card viewer as a single-file HTML web app. The app should:
+
+- Have a search input where the user types a Pokemon name (e.g., "pikachu", "charizard", "mewtwo").
+- When the user submits, fetch from the PokeAPI (https://pokeapi.co/api/v2/pokemon/{name}) and display a card showing the Pokemon's official artwork sprite, name, types (with colored type badges), height, weight, and base stats (HP, Attack, Defense, Special Attack, Special Defense, Speed) as horizontal bars.
+- Show a loading state while fetching and a friendly error message if the Pokemon isn't found.
+- Style it like a trading card: rounded corners, drop shadow, bright colors matching the Pokemon's type, and a subtle gradient background.
+- Include a few example names as clickable suggestions below the search input to help users get started.
+
+Keep everything in one index.html file. No API key needed.</code></pre>
+</div>
+
+<ol start="4">
+  <li>Run the app:</li>
+</ol>
+<div class="prompt-block">
+  <div class="label"><strong>Run local server</strong><button class="copy-btn" data-copy="npx serve .">Copy</button></div>
+  <pre><code>npx serve .</code></pre>
+</div>
+<p>Type a Pokemon name and see what happens. Try: <code>pikachu</code>, <code>charizard</code>, <code>mewtwo</code>, <code>eevee</code>, <code>snorlax</code>.</p>
+
+<h2 id="troubleshoot">Troubleshooting</h2>
+<table>
+  <thead><tr><th>Problem</th><th>Fix</th></tr></thead>
+  <tbody>
+    <tr><td>"npx is not recognized"</td><td>Install Node.js first: <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a>. Restart your terminal after installing.</td></tr>
+    <tr><td>Page is blank when I open <code>index.html</code> directly</td><td>Use <code>npx serve .</code> in the project folder instead of double-clicking the file. That starts a local web server.</td></tr>
+    <tr><td>App 2 doesn't fetch anything</td><td>Check: did you paste your Anthropic API key in the right spot? Did you keep the quotes around it? Is the key still valid (no extra spaces)?</td></tr>
+    <tr><td>App 2 shows a CORS error</td><td>Run the app with <code>npx serve .</code> instead of opening the file directly. CORS needs a real HTTP server.</td></tr>
+    <tr><td>App 3 shows "Pokemon not found"</td><td>Check your spelling. All lowercase. Try <code>pikachu</code> (not <code>Pikachu</code>).</td></tr>
+    <tr><td>Claude Code is stuck thinking forever</td><td>Ctrl+C to cancel. Try a simpler prompt. If it's still stuck, restart Claude Code.</td></tr>
+    <tr><td>API rate limit error</td><td>Wait 60 seconds and try again. If it persists, raise your hand.</td></tr>
+    <tr><td>Anything else</td><td>Raise your hand. Andy's your person.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="afterclass">After class</h2>
+<p>Want to keep building? Some suggestions:</p>
+<ul>
+  <li>Customize one of today's apps: change the domain, add features, restyle it.</li>
+  <li>Build a variation: App 1 as a recipe collection, App 3 as a Marvel character viewer using a different API.</li>
+  <li>Deploy one to Vercel so you can share it (see Class 1 handout for the deploy guide).</li>
+  <li>Think about what you want to build next. Bring it to Class 3 — we'll talk databases.</li>
+</ul>
+
+</div>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const target = btn.dataset.target;
+    const text = target ? document.getElementById(target).textContent : btn.dataset.copy;
+    try {
+      await navigator.clipboard.writeText(text);
+      const original = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 1500);
+    } catch (e) {
+      btn.textContent = 'Copy failed';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+    }
+  });
+});
+</script>
+</body>
+</html>
