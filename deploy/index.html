@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LOEE — Put Your Project Online</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5a5a5a;
+    --accent: #b44b2a;
+    --bg: #fdfcf8;
+    --card: #fff;
+    --border: #e6e1d6;
+    --code-bg: #1e1e2e;
+    --code-fg: #e4e4e7;
+    --warn-bg: #fff8e6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.55;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 2.5rem 1.25rem 5rem; }
+  header { border-bottom: 2px solid var(--border); margin-bottom: 2rem; padding-bottom: 1.25rem; }
+  header .eyebrow { color: var(--accent); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .8rem; }
+  header h1 { margin: .3rem 0 .25rem; font-size: 2rem; }
+  header p { margin: 0; color: var(--muted); }
+  h2 { margin-top: 2.5rem; font-size: 1.35rem; border-bottom: 1px solid var(--border); padding-bottom: .4rem; }
+  h3 { margin-top: 1.75rem; font-size: 1.05rem; }
+  code { font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: .92em; background: #f2eee3; padding: .12em .35em; border-radius: 3px; }
+  pre code { background: none; padding: 0; font-size: .9rem; }
+  pre {
+    background: var(--code-bg);
+    color: var(--code-fg);
+    padding: 1rem 1.1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: ui-monospace, "SF Mono", Consolas, monospace;
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+  .cmd {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    padding: .9rem 1rem 1rem;
+    margin: .9rem 0 1.1rem;
+  }
+  .cmd .label {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: .5rem;
+  }
+  .cmd .label strong { font-size: .9rem; }
+  .copy-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: .35rem .8rem;
+    border-radius: 6px;
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s;
+    font-family: inherit;
+  }
+  .copy-btn:hover { background: #943b20; }
+  .copy-btn.copied { background: #3a8a3a; }
+  .cmd pre {
+    background: #faf7ef;
+    color: var(--ink);
+    border: 1px solid var(--border);
+    font-size: .88rem;
+  }
+  .note {
+    border-left: 4px solid var(--accent);
+    background: var(--card);
+    padding: .65rem .9rem;
+    margin: 1rem 0;
+    border-radius: 0 6px 6px 0;
+    font-size: .95rem;
+  }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { text-align: left; padding: .6rem .75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: #f5f0e3; font-size: .9rem; }
+  td:first-child { width: 40%; font-weight: 600; }
+  a { color: var(--accent); }
+  .qa-table th:first-child { width: 45%; }
+  .back { display: inline-block; margin-bottom: 1rem; color: var(--muted); font-size: .9rem; text-decoration: none; }
+  .back:hover { color: var(--accent); }
+  @media print { .copy-btn { display: none; } body { background: #fff; } pre { background: #f5f5f5; color: #000; border: 1px solid #ccc; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<a class="back" href="../">← LOEE home</a>
+
+<header>
+  <div class="eyebrow">League of Extraordinary Engineers</div>
+  <h1>Put Your Project Online</h1>
+  <p>Follow these steps to deploy your project and get a shareable link.</p>
+</header>
+
+<h2>What does "deploy" mean?</h2>
+<p>Right now, your project only exists on your laptop. Deploying means putting it on the internet so anyone with the link can see it — your coworkers, your family, your friends. You'll get a URL like <code>yourproject.vercel.app</code> that works on any device.</p>
+<p>We're using a free service called <strong>Vercel</strong>. It hosts your site and gives you a link. The whole process takes about 2 minutes.</p>
+
+<h2>Step 1: Create a free Vercel account</h2>
+<p>Go to <a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com/signup</a> in your browser. You can sign up with:</p>
+<ul>
+  <li>Your email address (simplest option)</li>
+  <li>Your GitHub account (if you have one)</li>
+  <li>Your Google account</li>
+</ul>
+<p>Pick whichever is easiest. You just need to be able to log in.</p>
+<div class="note">Already have a Vercel account? Skip to Step 2.</div>
+
+<h2>Step 2: Install the Vercel tool</h2>
+<p>In your terminal, run this command:</p>
+<div class="cmd">
+  <div class="label"><strong>Install Vercel CLI</strong><button class="copy-btn" data-copy="npm install -g vercel">Copy</button></div>
+  <pre><code>npm install -g vercel</code></pre>
+</div>
+<p>This installs Vercel's deployment tool on your computer. You only need to do this once.</p>
+<p>Then log in:</p>
+<div class="cmd">
+  <div class="label"><strong>Log in</strong><button class="copy-btn" data-copy="vercel login">Copy</button></div>
+  <pre><code>vercel login</code></pre>
+</div>
+<p>This opens your browser to verify your account. Follow the prompts, then come back to the terminal.</p>
+
+<h2>Step 3: Deploy your project</h2>
+<p>Navigate to your project folder in the terminal. If you're not sure where it is, ask Andy. Then run:</p>
+<div class="cmd">
+  <div class="label"><strong>Deploy</strong><button class="copy-btn" data-copy="vercel">Copy</button></div>
+  <pre><code>vercel</code></pre>
+</div>
+<p>Vercel will ask you a few questions. Here's what to answer:</p>
+
+<table>
+  <thead><tr><th>Vercel asks you…</th><th>You answer…</th></tr></thead>
+  <tbody>
+    <tr><td>Set up and deploy?</td><td><code>Y</code> (yes)</td></tr>
+    <tr><td>Which scope?</td><td>Select your personal account</td></tr>
+    <tr><td>Link to existing project?</td><td><code>N</code> (no — create a new one)</td></tr>
+    <tr><td>What's your project's name?</td><td>Type your first name (e.g., <code>jane-loee</code>)</td></tr>
+    <tr><td>In which directory is your code?</td><td>Press Enter (use the default: <code>./</code>)</td></tr>
+    <tr><td>Want to modify build settings?</td><td><code>N</code> (no)</td></tr>
+  </tbody>
+</table>
+
+<p>Vercel will upload your project. When it's done, you'll see something like:</p>
+<pre><code>✅ Production: https://jane-loee.vercel.app [12s]</code></pre>
+<p>That URL is your live site. Open it in your browser. Text it to someone. It's on the internet right now.</p>
+
+<h2>Step 4: Update your site (optional)</h2>
+<p>Made changes to your project with Claude Code? Deploy the update:</p>
+<div class="cmd">
+  <div class="label"><strong>Deploy an update</strong><button class="copy-btn" data-copy="vercel --prod">Copy</button></div>
+  <pre><code>vercel --prod</code></pre>
+</div>
+<p>This pushes your latest version to the same URL. Your link stays the same — the content updates.</p>
+
+<h2>Shortcut: skip the questions</h2>
+<p>If you want to skip all the prompts and just deploy fast, run:</p>
+<div class="cmd">
+  <div class="label"><strong>Deploy with defaults</strong><button class="copy-btn" data-copy="vercel --yes">Copy</button></div>
+  <pre><code>vercel --yes</code></pre>
+</div>
+<p>This accepts all the defaults. Great for quick updates.</p>
+
+<h2>Something not working?</h2>
+<table class="qa-table">
+  <thead><tr><th>Problem</th><th>What to do</th></tr></thead>
+  <tbody>
+    <tr><td>"command not found: vercel"</td><td>Close and reopen your terminal, then try again. If still broken, run <code>npm install -g vercel</code> again.</td></tr>
+    <tr><td>"Error: No framework detected"</td><td>That's OK for a static site. Vercel should still deploy. If it asks for a framework, choose "Other".</td></tr>
+    <tr><td>Deploy succeeded but page is blank</td><td>Check that your project has an <code>index.html</code> file in the root folder. If your files are in a subfolder, you may need to <code>cd</code> into it first.</td></tr>
+    <tr><td>"You have exceeded the free tier"</td><td>Unlikely for this class, but if it happens, ask Andy.</td></tr>
+    <tr><td>"EACCES: permission denied"</td><td>Do NOT use <code>sudo</code>. Ask Andy for help.</td></tr>
+    <tr><td>Still stuck</td><td>Raise your hand. Andy will handle it.</td></tr>
+  </tbody>
+</table>
+
+</div>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const text = btn.dataset.copy;
+    try {
+      await navigator.clipboard.writeText(text);
+      const original = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+    } catch (e) {
+      btn.textContent = 'Copy failed';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+    }
+  });
+});
+</script>
+</body>
+</html>
