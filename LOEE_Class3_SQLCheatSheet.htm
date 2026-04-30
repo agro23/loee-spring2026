@@ -1,0 +1,404 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+h2
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:13.0pt;
+	font-family:"Arial",sans-serif;
+	color:#2C3E50;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin:0in;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+.MsoChpDefault
+	{font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:.75in .75in .75in .75in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link="#0563C1" vlink="#96607D" style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='margin-bottom:4.0pt;text-align:center'><b><span
+style='font-size:18.0pt;color:#1B4F72'>SQL CHEAT SHEET</span></b></p>
+
+<p class=MsoNormal align=center style='margin-bottom:2.0pt;text-align:center'><span
+style='color:#2C3E50'>The 11 Commands You’ll Actually Use</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center'><i><span
+style='font-size:10.0pt;color:#777777'>LOEE Class 3 · Keep this on your desk</span></i></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Claude
+Code writes SQL for you. But knowing the basics lets you read what it wrote,
+spot mistakes, and write your own quick queries in the Supabase SQL Editor.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<h2>The Commands</h2>
+
+<p class=MsoNormal style='margin-bottom:2.0pt'><b><span style='font-size:11.0pt;
+font-family:"Courier New";color:#1B4F72'>SELECT * FROM tasks;</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.25in'><span style='font-size:10.5pt;color:#2C3E50'>Get all rows
+from the tasks table.</span></p>
+
+<p class=MsoNormal style='margin-bottom:2.0pt'><b><span style='font-size:11.0pt;
+font-family:"Courier New";color:#1B4F72'>SELECT title, created_at FROM tasks;</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.25in'><span style='font-size:10.5pt;color:#2C3E50'>Get only the
+title and created_at columns.</span></p>
+
+<p class=MsoNormal style='margin-bottom:2.0pt'><b><span style='font-size:11.0pt;
+font-family:"Courier New";color:#1B4F72'>SELECT * FROM tasks WHERE completed =
+true;</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.25in'><span style='font-size:10.5pt;color:#2C3E50'>Filter rows.
+Note: true/false are unquoted.</span></p>
+
+<p class=MsoNormal style='margin-bottom:2.0pt'><b><span style='font-size:11.0pt;
+font-family:"Courier New";color:#1B4F72'>SELECT * FROM tasks WHERE title = 'Buy
+milk';</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.25in'><span style='font-size:10.5pt;color:#2C3E50'>Filter by
+string. Single quotes for strings.</span></p>
+
+<p class=MsoNormal style='margin-bottom:2.0pt'><b><span style='font-size:11.0pt;
+font-family:"Courier New";color:#1B4F72'>SELECT * FROM tasks ORDER BY
+created_at DESC;</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.25in'><span style='font-size:10.5pt;color:#2C3E50'>Sort by
+created_at, newest first. ASC for oldest first.</span></p>
+
+<p class=MsoNormal style='margin-bottom:2.0pt'><b><span style='font-size:11.0pt;
+font-family:"Courier New";color:#1B4F72'>SELECT * FROM tasks ORDER BY title ASC
+LIMIT 10;</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.25in'><span style='font-size:10.5pt;color:#2C3E50'>First 10
+alphabetically. LIMIT caps the rows returned.</span></p>
+
+<p class=MsoNormal style='margin-bottom:2.0pt'><b><span style='font-size:11.0pt;
+font-family:"Courier New";color:#1B4F72'>SELECT COUNT(*) FROM tasks;</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.25in'><span style='font-size:10.5pt;color:#2C3E50'>Count rows.
+Returns a single number.</span></p>
+
+<p class=MsoNormal style='margin-bottom:2.0pt'><b><span style='font-size:11.0pt;
+font-family:"Courier New";color:#1B4F72'>SELECT COUNT(*) FROM tasks WHERE
+completed = true;</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.25in'><span style='font-size:10.5pt;color:#2C3E50'>Count only
+matching rows.</span></p>
+
+<p class=MsoNormal style='margin-bottom:2.0pt'><b><span style='font-size:11.0pt;
+font-family:"Courier New";color:#1B4F72'>INSERT INTO tasks (title) VALUES
+('Walk the dog');</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.25in'><span style='font-size:10.5pt;color:#2C3E50'>Add a new row.
+Other columns get default values.</span></p>
+
+<p class=MsoNormal style='margin-bottom:2.0pt'><b><span style='font-size:11.0pt;
+font-family:"Courier New";color:#1B4F72'>UPDATE tasks SET completed = true
+WHERE id = 5;</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.25in'><span style='font-size:10.5pt;color:#2C3E50'>Change rows.
+ALWAYS use a WHERE clause.</span></p>
+
+<p class=MsoNormal style='margin-bottom:2.0pt'><b><span style='font-size:11.0pt;
+font-family:"Courier New";color:#1B4F72'>DELETE FROM tasks WHERE id = 5;</span></b></p>
+
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:8.0pt;
+margin-left:.25in'><span style='font-size:10.5pt;color:#2C3E50'>Remove rows.
+ALWAYS use a WHERE clause or you delete everything.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<span style='font-size:12.0pt;font-family:"Arial",sans-serif'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>Gotchas (Read This)</h2>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>1.
+Single quotes for text. Never double quotes.</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>In
+SQL, double quotes are for column or table names that have spaces in them —
+which we avoid. Single quotes are for the actual text values you're storing or
+comparing.</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>RIGHT:  WHERE title = 'Buy milk'</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>WRONG:  WHERE title = &quot;Buy
+  milk&quot;     -- SQL thinks &quot;Buy milk&quot; is a column name</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>2. Don't
+forget WHERE on UPDATE and DELETE.</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>If
+you forget the WHERE clause, you change or delete EVERY row. The SQL editor
+will warn you, but if you click through the warning, your data is gone.</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>DANGEROUS: DELETE FROM
+  tasks;             -- removes ALL rows</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>SAFE:      DELETE FROM tasks WHERE id
+  = 5; -- removes ONE row</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>3.
+Column names are case-insensitive (mostly).</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>title
+and TITLE refer to the same column. By convention, use lowercase with
+underscores: created_at, user_id, not CreatedAt or userID.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>4. NULL
+is not the same as empty string or zero.</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>NULL
+means &quot;no value&quot; or &quot;unknown.&quot; Comparing to NULL with =
+doesn't work the way you'd expect.</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>WRONG: WHERE user_id = NULL         
+  -- returns nothing</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>RIGHT: WHERE user_id IS NULL        
+  -- works</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>RIGHT: WHERE user_id IS NOT NULL    
+  -- works</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>5.
+Strings are case-sensitive in comparisons.</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>'Buy
+milk' is not equal to 'buy milk'. If you want to ignore case, use ILIKE:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>WHERE title = 'buy milk'      -- exact
+  match only</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>WHERE title ILIKE 'buy milk'  --
+  case-insensitive match</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>WHERE title ILIKE '%milk%'    --
+  contains 'milk', any case</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>6.
+Semicolons end statements.</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>In
+the Supabase SQL Editor, you can run multiple statements at once if you put a
+semicolon after each. Forgetting a semicolon between statements causes errors.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>7. ASC
+is the default for ORDER BY.</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>ORDER
+BY title is the same as ORDER BY title ASC. You only need to specify if you
+want DESC.</span><br clear=all style='page-break-before:always'>
+</p>
+
+<h2>Reading What Claude Code Generated</h2>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>When
+Claude Code writes SQL for you, look for these patterns:</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>CREATE
+TABLE — making a new table</span></b></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>CREATE TABLE table_name (</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  column_name TYPE constraints,</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  another_column TYPE constraints</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>);</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Each
+line inside the parentheses is one column. The TYPE is what kind of data it
+holds (TEXT, BOOLEAN, BIGSERIAL, TIMESTAMPTZ, UUID). Constraints add rules (NOT
+NULL, DEFAULT something, PRIMARY KEY).</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>CREATE
+POLICY — row-level security rule</span></b></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>CREATE POLICY &quot;policy_name&quot;
+  ON table_name FOR action</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  USING (condition);</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>&quot;action&quot;
+is SELECT, INSERT, UPDATE, or DELETE. &quot;condition&quot; is what must be
+true for the user to be allowed to do the action. auth.uid() is the current
+user's ID.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>ALTER
+TABLE — changing an existing table</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Used
+to add columns, drop columns, enable RLS, etc. Common pattern:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>ALTER TABLE tasks ENABLE ROW LEVEL
+  SECURITY;</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>ALTER TABLE tasks ADD COLUMN priority
+  INTEGER DEFAULT 0;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<h2>If You Get Stuck</h2>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Two
+things to try when SQL fails:</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Read the error message. Postgres errors
+are usually specific: &quot;column 'title' does not exist&quot; tells you the
+column name is wrong. &quot;syntax error near...&quot; tells you exactly where
+the parser choked.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Paste the SQL and the error into Claude
+Code. Ask it to fix it. This is faster than debugging yourself.</span></p>
+
+</div>
+
+</body>
+
+</html>

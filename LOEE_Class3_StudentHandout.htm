@@ -1,0 +1,648 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+h1
+	{margin-top:.25in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	font-size:16.0pt;
+	font-family:"Arial",sans-serif;
+	color:#1B4F72;}
+h2
+	{margin-top:12.0pt;
+	margin-right:0in;
+	margin-bottom:6.0pt;
+	margin-left:0in;
+	font-size:13.0pt;
+	font-family:"Arial",sans-serif;
+	color:#2C3E50;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin:0in;
+	font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+.MsoChpDefault
+	{font-size:12.0pt;
+	font-family:"Arial",sans-serif;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:.75in .75in .75in .75in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link="#0563C1" vlink="#96607D" style='word-wrap:break-word'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='margin-bottom:4.0pt;text-align:center'><b><span
+style='font-size:18.0pt;color:#1B4F72'>LEAGUE OF EXTRAORDINARY ENGINEERS</span></b></p>
+
+<p class=MsoNormal align=center style='margin-bottom:2.0pt;text-align:center'><span
+style='font-size:14.0pt;color:#2C3E50'>Class 3: Databases with Supabase —
+Student Handout</span></p>
+
+<p class=MsoNormal align=center style='margin-bottom:10.0pt;text-align:center'><span
+style='font-size:11.0pt;color:#777777'>Keep this open during class. Pre-class
+steps, follow-along, and troubleshooting.</span></p>
+
+<h2>What We’re Building</h2>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>A
+real task list app. By the end of the hour: it stores your tasks in a real
+database, you sign in to your own account, your tasks are private to you, they
+update across devices instantly, and it's deployed to a public URL.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><b><span style='font-size:11.0pt'>Don't
+worry about every detail. </span></b><span style='font-size:11.0pt'>Some of
+this will click immediately, some won't. The structure of every modern app is
+the same idea you'll see today.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<h2>Before Class</h2>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Create a free Supabase account at
+https://supabase.com.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>If you have time, create a blank project.
+Free tier. Closest region. Save the database password somewhere.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Bring Claude Code installed (from Classes
+1 and 2). Verify with: claude --version</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Download the starter app from: [CLASS
+HOSTING URL HERE — Andy will provide]</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<h2>Setup Check (First 10 Minutes)</h2>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Jim
+leads a ride-along. Everyone follows together:</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Sign in at supabase.com.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Click &quot;New Project.&quot;</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Name it (anything). Pick the free tier.
+Save the database password.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Pick your closest region (US West if in
+Portland).</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Wait ~60 seconds for the project to spin
+up.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>When it's ready, navigate to the Table
+Editor.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<span style='font-size:12.0pt;font-family:"Arial",sans-serif'><br clear=all
+style='page-break-before:always'>
+</span>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1>Step 1: Create the Tasks Table</h1>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>In
+the Supabase dashboard, click SQL Editor in the left sidebar. Paste and run:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>CREATE TABLE tasks (</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  id BIGSERIAL PRIMARY KEY,</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  title TEXT NOT NULL,</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  completed BOOLEAN DEFAULT false,</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  created_at TIMESTAMPTZ DEFAULT
+  now(),</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  user_id UUID REFERENCES
+  auth.users(id)</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>);</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>What
+this means:</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+3.0pt;margin-left:.5in;text-indent:-.25in'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>id — unique number for each task,
+generated automatically.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+3.0pt;margin-left:.5in;text-indent:-.25in'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>title — the task description text. NOT
+NULL means it's required.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+3.0pt;margin-left:.5in;text-indent:-.25in'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>completed — true or false. Defaults to
+false (not done yet).</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+3.0pt;margin-left:.5in;text-indent:-.25in'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>created_at — when this task was added.
+Filled in automatically.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+3.0pt;margin-left:.5in;text-indent:-.25in'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>user_id — which user owns this task. Will
+tie tasks to accounts.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Click
+Run. Switch to Table Editor. Your empty tasks table is there.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<h1>Step 2: Lock It Down with Row-Level Security</h1>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Without
+security, anyone can read anyone's tasks. We'll fix that.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>In the Supabase dashboard, find the AI
+assistant (chat icon).</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Ask it: &quot;Generate RLS policies for
+the tasks table that let users read, insert, update, and delete only their own
+tasks based on the user_id column.&quot;</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Review the SQL it generates. Apply it.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Or
+paste this directly:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>ALTER TABLE tasks ENABLE ROW LEVEL
+  SECURITY;</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'>&nbsp;</p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>CREATE POLICY &quot;select own
+  tasks&quot; ON tasks FOR SELECT</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  USING (auth.uid() = user_id);</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'>&nbsp;</p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>CREATE POLICY &quot;insert own
+  tasks&quot; ON tasks FOR INSERT</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  WITH CHECK (auth.uid() = user_id);</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'>&nbsp;</p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>CREATE POLICY &quot;update own
+  tasks&quot; ON tasks FOR UPDATE</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  USING (auth.uid() = user_id);</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'>&nbsp;</p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>CREATE POLICY &quot;delete own
+  tasks&quot; ON tasks FOR DELETE</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>  USING (auth.uid() = user_id);</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Now
+the database itself enforces &quot;only see your own tasks.&quot; Even if your
+app code has a bug, the database refuses unauthorized requests.</span></p>
+
+<h1>Step 3: Wire Up the Starter App</h1>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Open
+the starter app folder you downloaded. In your terminal, navigate into it. Then
+start Claude Code:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>cd path/to/starter-app</span></p>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>claude</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Paste
+this prompt:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  border-left:solid #2C3E50 1.0pt;background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:4.0pt'><b><span style='font-size:
+  11.0pt;color:#2C3E50'>Wire-Up Prompt:</span></b></p>
+  <p class=MsoNormal style='margin-bottom:3.0pt'><span style='font-size:10.5pt;
+  color:black'>&quot;Take this index.html starter and connect it to Supabase.
+  Add a sign-in/sign-up form using Supabase Auth (email + password). Replace
+  the in-memory tasks array with calls to a Supabase tasks table. The table has
+  columns: id, title, completed, created_at, user_id. When the user is signed
+  in, show their tasks. When they sign out, show the sign-in form. Use the
+  Supabase JS client loaded from the CDN. I'll paste my project URL and anon
+  key into placeholders at the top of the script.&quot;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>Find
+Your Supabase URL and Anon Key:</span></b></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>In Supabase: Project Settings (gear icon)
+&gt; API.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Copy the &quot;Project URL.&quot;</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Copy the &quot;anon public&quot; key. NOT
+the service_role key — that one bypasses security.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Paste
+both into the placeholders Claude Code added to your file. Save.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Run
+the app:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>npx serve .</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Sign
+up. Add a task. Refresh the page. The task is still there — because it's in
+your real database now.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<h1>Step 4: Add Real-Time Updates</h1>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Make
+the app update across devices instantly when data changes.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>In Supabase: Database &gt; Replication.
+Enable replication for the tasks table.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Back in your project folder, run claude
+again.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+4.0pt;margin-left:.5in;text-indent:-.25in'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Paste this prompt:</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  border-left:solid #2C3E50 1.0pt;background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:4.0pt'><b><span style='font-size:
+  11.0pt;color:#2C3E50'>Real-Time Prompt:</span></b></p>
+  <p class=MsoNormal style='margin-bottom:3.0pt'><span style='font-size:10.5pt;
+  color:black'>&quot;Add a Supabase real-time subscription to the tasks table
+  so that when a task is inserted, updated, or deleted in the database, the UI
+  updates automatically without refreshing. Use the channel API from
+  supabase-js.&quot;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Save.
+Run npx serve. Open the app in two browser windows side by side. Sign in as the
+same user in both. Add a task in one. Watch it appear in the other instantly.</span></p>
+
+<h1>Step 5: Deploy</h1>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Same
+workflow as Class 1. In your project folder:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:2.0pt'><span style='font-size:10.0pt;
+  font-family:"Courier New";color:black'>vercel</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Follow
+the prompts. You'll get a URL you can share.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>If
+you didn't set up Vercel in Class 1, talk to Andy — he'll put your project on
+the class hosting site.</span></p>
+
+<h1>Troubleshooting</h1>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=233 valign=top style='width:175.0pt;border:solid #CCCCCC 1.0pt;
+  background:#C0392B;padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt;color:white'>Problem</span></b></p>
+  </td>
+  <td width=391 valign=top style='width:293.0pt;border:solid #CCCCCC 1.0pt;
+  border-left:none;background:#C0392B;padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><b><span style='font-size:10.0pt;color:white'>Fix</span></b></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=233 valign=top style='width:175.0pt;border:solid #CCCCCC 1.0pt;
+  border-top:none;padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>Email
+  confirmation not arriving for signup</span></p>
+  </td>
+  <td width=391 valign=top style='width:293.0pt;border-top:none;border-left:
+  none;border-bottom:solid #CCCCCC 1.0pt;border-right:solid #CCCCCC 1.0pt;
+  padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>Supabase:
+  Authentication &gt; Settings &gt; toggle off &quot;Confirm email&quot; for
+  class. Re-enable it later for production.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=233 valign=top style='width:175.0pt;border:solid #CCCCCC 1.0pt;
+  border-top:none;padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>&quot;Permission
+  denied&quot; when querying tasks</span></p>
+  </td>
+  <td width=391 valign=top style='width:293.0pt;border-top:none;border-left:
+  none;border-bottom:solid #CCCCCC 1.0pt;border-right:solid #CCCCCC 1.0pt;
+  padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>RLS is working
+  as designed. You're not signed in, or signed in as a different user. Sign in
+  first.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=233 valign=top style='width:175.0pt;border:solid #CCCCCC 1.0pt;
+  border-top:none;padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>App shows blank
+  after wire-up</span></p>
+  </td>
+  <td width=391 valign=top style='width:293.0pt;border-top:none;border-left:
+  none;border-bottom:solid #CCCCCC 1.0pt;border-right:solid #CCCCCC 1.0pt;
+  padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>Check browser
+  console (F12). Most likely: URL or anon key wasn't pasted correctly. Make
+  sure you used the anon key, not service_role.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=233 valign=top style='width:175.0pt;border:solid #CCCCCC 1.0pt;
+  border-top:none;padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>Tasks don't
+  appear in real-time</span></p>
+  </td>
+  <td width=391 valign=top style='width:293.0pt;border-top:none;border-left:
+  none;border-bottom:solid #CCCCCC 1.0pt;border-right:solid #CCCCCC 1.0pt;
+  padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>Did you enable
+  replication for the tasks table in Database &gt; Replication?</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=233 valign=top style='width:175.0pt;border:solid #CCCCCC 1.0pt;
+  border-top:none;padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>&quot;npx
+  serve&quot; not found</span></p>
+  </td>
+  <td width=391 valign=top style='width:293.0pt;border-top:none;border-left:
+  none;border-bottom:solid #CCCCCC 1.0pt;border-right:solid #CCCCCC 1.0pt;
+  padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>Install
+  Node.js: https://nodejs.org. Restart terminal after installing.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=233 valign=top style='width:175.0pt;border:solid #CCCCCC 1.0pt;
+  border-top:none;padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>CORS errors</span></p>
+  </td>
+  <td width=391 valign=top style='width:293.0pt;border-top:none;border-left:
+  none;border-bottom:solid #CCCCCC 1.0pt;border-right:solid #CCCCCC 1.0pt;
+  padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>Run via npx
+  serve, not by opening the file directly.</span></p>
+  </td>
+ </tr>
+ <tr>
+  <td width=233 valign=top style='width:175.0pt;border:solid #CCCCCC 1.0pt;
+  border-top:none;padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>Anything else</span></p>
+  </td>
+  <td width=391 valign=top style='width:293.0pt;border-top:none;border-left:
+  none;border-bottom:solid #CCCCCC 1.0pt;border-right:solid #CCCCCC 1.0pt;
+  padding:4.0pt 6.0pt 4.0pt 6.0pt'>
+  <p class=MsoNormal><span style='font-size:10.0pt;color:black'>Raise your
+  hand. Andy is your person.</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<h1>After Class: Stretch Goals</h1>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Want
+to keep going? Try these on your own:</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>Add a
+Live Chat to Your App</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Use
+Claude Code with this prompt in your wired-up project:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0 width=624
+ style='width:6.5in;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=624 valign=top style='width:6.5in;border:solid #CCCCCC 1.0pt;
+  border-left:solid #2C3E50 1.0pt;background:#F4F6F7;padding:6.0pt 10.0pt 6.0pt 10.0pt'>
+  <p class=MsoNormal style='margin-bottom:4.0pt'><b><span style='font-size:
+  11.0pt;color:#2C3E50'>Chat Prompt:</span></b></p>
+  <p class=MsoNormal style='margin-bottom:3.0pt'><span style='font-size:10.5pt;
+  color:black'>&quot;Add a real-time chat panel to my app. Create a new
+  messages table in Supabase with columns: id, content, user_id, created_at.
+  Add RLS policies that let any authenticated user read all messages but only
+  insert their own. Subscribe to changes on the messages table and display them
+  in a chat sidebar. Include a text input at the bottom to send a
+  message.&quot;</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>This
+shows that the same patterns you learned today (schema, RLS, real-time) extend
+naturally to other features.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:10.0pt;margin-right:0in;margin-bottom:
+5.0pt;margin-left:0in'><b><span style='font-size:11.5pt;color:#2C3E50'>Adapt
+the Template</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>The
+skeleton you built today works for any &quot;users have private data&quot; app.
+Try one of these:</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+3.0pt;margin-left:.5in;text-indent:-.25in'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Notes app: replace tasks with notes (id,
+title, content, user_id).</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+3.0pt;margin-left:.5in;text-indent:-.25in'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Recipe collection: title, ingredients,
+instructions, user_id.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+3.0pt;margin-left:.5in;text-indent:-.25in'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Habit tracker: name, last_done_at,
+streak, user_id.</span></p>
+
+<p class=MsoListParagraph style='margin-top:0in;margin-right:0in;margin-bottom:
+3.0pt;margin-left:.5in;text-indent:-.25in'>•<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style='font-size:11.0pt'>Reading list: book_title, author, status,
+rating, user_id.</span></p>
+
+<p class=MsoNormal style='margin-bottom:3.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:6.0pt'><span style='font-size:11.0pt'>Each
+one is the same architecture with different column names. That's the takeaway
+from today: you've learned a pattern, not just a single app.</span></p>
+
+</div>
+
+</body>
+
+</html>
